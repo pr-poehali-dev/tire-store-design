@@ -47,10 +47,37 @@ const TYPES = ['Шины', 'Диски'];
 const DIAMETERS = [15, 16, 17, 18, 19];
 
 const SERVICES = [
-  { icon: 'Wrench', title: 'Шиномонтаж', desc: 'Профессиональная замена и балансировка колес на современном оборудовании' },
-  { icon: 'Disc3', title: 'Правка дисков', desc: 'Восстановление геометрии литых и стальных дисков любой сложности' },
-  { icon: 'Gauge', title: 'Развал-схождение', desc: 'Точная регулировка углов установки колес на 3D-стенде' },
-  { icon: 'Warehouse', title: 'Сезонное хранение', desc: 'Безопасное хранение вашего комплекта шин на нашем складе' },
+  { icon: 'CircleCheck', title: 'Новые и б/у шины', desc: 'Гарантируем, что б/у шины прошли полную проверку: без боковых порезов, грыж и неравномерного износа, полностью пригодны к эксплуатации.' },
+  { icon: 'Repeat', title: 'Выкуп, обмен и трейд-ин', desc: 'Выкупаем шины с пробегом у физических и юридических лиц в любых количествах. Деньги выплачиваем сразу, при необходимости приедем к вам.' },
+  { icon: 'Wrench', title: 'Шинсервис', desc: 'Монтаж, 3D балансировка, аргонная сварка, правка дисков, азот, ремонт боковых порезов и грыж.' },
+  { icon: 'Bolt', title: 'Крепёж', desc: 'Продаём гайки, болты, вентиля и проставки для вашего автомобиля.' },
+  { icon: 'Warehouse', title: 'Сезонное хранение шин', desc: 'Безопасное хранение вашего комплекта на складе — от 200 руб./месяц.' },
+  { icon: 'SprayCan', title: 'Порошковая покраска дисков', desc: 'Качественная порошковая покраска литых и стальных дисков в любой цвет.' },
+  { icon: 'Snowflake', title: 'Экспресс заправка кондиционеров', desc: 'Быстрая заправка и обслуживание автомобильных кондиционеров.' },
+];
+
+const BUYOUT_PRICES = [
+  { r: 'R15', price: 'до 1 500 ₽' },
+  { r: 'R16', price: 'до 2 500 ₽' },
+  { r: 'R17', price: 'до 3 000 ₽' },
+  { r: 'R18', price: 'до 4 000 ₽' },
+  { r: 'R19', price: 'до 4 500 ₽' },
+  { r: 'R20–R24', price: 'до 5 000 ₽' },
+];
+
+const BUYOUT_REQUIREMENTS = [
+  'С протектором более 4,5 миллиметра',
+  'С равномерным износом — без стёртых боков',
+  'Без дефектов — боковых порезов и грыж',
+  'Шинам должно быть меньше 5 лет',
+];
+
+const BUYOUT_ADVANTAGES = [
+  'Не нужно размещать объявления и долго ждать покупателя, отвечая на бесконечные звонки.',
+  'Выкуп колёс происходит в течение часа, включая оценку.',
+  'Опытные оценщики честно и прозрачно производят оценку, озвучивая основные факторы стоимости.',
+  'Деньги вы получаете сразу же после достижения договорённости по стоимости колёс.',
+  'Работаем без выходных и готовы приобрести колёса в сборе, старую резину или диски.',
 ];
 
 const REVIEWS = [
@@ -63,6 +90,7 @@ const NAV = [
   { id: 'home', label: 'Главная' },
   { id: 'catalog', label: 'Каталог' },
   { id: 'services', label: 'Услуги' },
+  { id: 'buyout', label: 'Выкуп колёс' },
   { id: 'reviews', label: 'Отзывы' },
   { id: 'contacts', label: 'Контакты' },
 ];
@@ -126,7 +154,7 @@ const Index = () => {
               <Icon name="Disc" className="text-accent" size={22} />
             </div>
             <div className="text-left leading-none">
-              <div className="font-heading font-bold text-lg md:text-2xl tracking-wider">ШИНОЦЕНТР</div>
+              <div className="font-heading font-bold text-lg md:text-2xl tracking-wider">#АСТ_ШИНА</div>
               <div className="text-[10px] md:text-xs text-accent tracking-[0.2em] uppercase">Шины · Диски · Сервис</div>
             </div>
           </button>
@@ -141,9 +169,9 @@ const Index = () => {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="tel:+78001234567" className="hidden md:flex items-center gap-2 hover:text-accent transition-colors">
+            <a href="tel:+79276643340" className="hidden md:flex items-center gap-2 hover:text-accent transition-colors">
               <Icon name="Phone" size={18} />
-              <span className="font-heading text-sm">8 800 123-45-67</span>
+              <span className="font-heading text-sm">+7 (927) 664-33-40</span>
             </a>
             <Sheet>
               <SheetTrigger asChild>
@@ -224,10 +252,10 @@ const Index = () => {
               Гарантия качества
             </Badge>
             <h1 className="font-heading font-bold text-4xl md:text-6xl uppercase leading-tight tracking-wide mb-6">
-              Шины и диски<br />для вашего <span className="text-accent">автомобиля</span>
+              Шины и диски<br />в <span className="text-accent">Астрахани</span>
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg">
-              Более 5000 моделей в наличии. Подберём оптимальный комплект, доставим и установим за один день.
+              Новые и б/у шины с гарантией, выкуп и обмен колёс, профессиональный шинсервис. Подберём оптимальный комплект и установим за один день.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button onClick={() => scrollTo('catalog')} className="bg-accent text-accent-foreground hover:bg-accent/90 font-heading uppercase tracking-wide px-8 text-base h-12">
@@ -238,7 +266,7 @@ const Index = () => {
               </Button>
             </div>
             <div className="flex flex-wrap gap-8 mt-12">
-              {[['Truck', 'Доставка по РФ'], ['ShieldCheck', 'Гарантия 2 года'], ['Tag', 'Лучшие цены']].map(([icon, text]) => (
+              {[['Truck', 'Доставка по городу'], ['ShieldCheck', 'Гарантия качества'], ['Tag', 'Лучшие цены']].map(([icon, text]) => (
                 <div key={text} className="flex items-center gap-2">
                   <Icon name={icon} className="text-accent" size={22} />
                   <span className="text-sm font-heading uppercase tracking-wide">{text}</span>
@@ -347,7 +375,7 @@ const Index = () => {
             <div className="text-foreground/60 font-heading uppercase tracking-widest text-sm mb-2">Что мы предлагаем</div>
             <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-wide">Услуги сервиса</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SERVICES.map((s) => (
               <div key={s.title} className="bg-card border border-border rounded-lg p-6 hover:border-accent hover:-translate-y-1 transition-all">
                 <div className="w-14 h-14 rounded bg-primary flex items-center justify-center mb-4">
@@ -357,6 +385,74 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Buyout */}
+      <section id="buyout" className="py-16 md:py-24 bg-primary text-primary-foreground">
+        <div className="container">
+          <div className="mb-10">
+            <div className="text-accent font-heading uppercase tracking-widest text-sm mb-2">Продайте нам колёса</div>
+            <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-wide">Выкуп колёс</h2>
+            <p className="text-primary-foreground/70 mt-4 max-w-2xl">
+              #АСТ_ШИНА занимается выкупом шин и колёс легковых автомобилей и мотошин. Привозите колёса сегодня — оценим и рассчитаемся сразу.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-[1fr_360px] gap-8 items-start">
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-heading font-semibold text-xl uppercase mb-4 flex items-center gap-2">
+                  <Icon name="ClipboardCheck" className="text-accent" size={22} /> Какие колёса выкупаем
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {BUYOUT_REQUIREMENTS.map((req) => (
+                    <div key={req} className="flex items-start gap-3 bg-primary-foreground/5 border border-primary-foreground/10 rounded p-4">
+                      <Icon name="Check" className="text-accent shrink-0 mt-0.5" size={18} />
+                      <span className="text-sm text-primary-foreground/85">{req}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-heading font-semibold text-xl uppercase mb-4 flex items-center gap-2">
+                  <Icon name="Star" className="text-accent" size={22} /> 5 преимуществ скупки у нас
+                </h3>
+                <div className="space-y-3">
+                  {BUYOUT_ADVANTAGES.map((adv, i) => (
+                    <div key={i} className="flex items-start gap-4 bg-primary-foreground/5 border border-primary-foreground/10 rounded p-4">
+                      <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground font-heading font-bold flex items-center justify-center shrink-0">
+                        {i + 1}
+                      </div>
+                      <span className="text-sm text-primary-foreground/85 leading-relaxed">{adv}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-card text-card-foreground rounded-lg overflow-hidden lg:sticky lg:top-24">
+              <div className="bg-accent text-accent-foreground p-5">
+                <h3 className="font-heading font-bold text-2xl uppercase flex items-center gap-2">
+                  <Icon name="BadgeRussianRuble" size={26} /> Цены на скупку
+                </h3>
+              </div>
+              <div className="divide-y divide-border">
+                {BUYOUT_PRICES.map((p) => (
+                  <div key={p.r} className="flex items-center justify-between px-5 py-4">
+                    <span className="font-heading font-semibold text-lg">{p.r}</span>
+                    <span className="font-heading font-bold text-lg text-foreground">{p.price}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="p-5">
+                <Button onClick={() => scrollTo('contacts')} className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground font-heading uppercase tracking-wide h-12 transition-colors">
+                  Сдать колёса
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -402,10 +498,10 @@ const Index = () => {
               <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-wide mb-8">Контакты</h2>
               <div className="space-y-5">
                 {[
-                  { icon: 'MapPin', label: 'Адрес', val: 'г. Москва, ул. Автомобильная, д. 15' },
-                  { icon: 'Phone', label: 'Телефон', val: '8 800 123-45-67' },
-                  { icon: 'Mail', label: 'Email', val: 'info@shinocentr.ru' },
-                  { icon: 'Clock', label: 'Часы работы', val: 'Ежедневно с 9:00 до 21:00' },
+                  { icon: 'MapPin', label: 'Адрес', val: 'г. Астрахань, ул. Рождественского, 35' },
+                  { icon: 'Phone', label: 'Телефон', val: '+7 (927) 664-33-40' },
+                  { icon: 'Mail', label: 'Email', val: 'ast_shina@bk.ru' },
+                  { icon: 'Truck', label: 'Доставка', val: 'Только по городу' },
                 ].map((c) => (
                   <div key={c.label} className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded border-2 border-accent flex items-center justify-center shrink-0">
@@ -444,9 +540,9 @@ const Index = () => {
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Icon name="Disc" className="text-accent" size={24} />
-            <span className="font-heading font-bold text-xl tracking-wider">ШИНОЦЕНТР</span>
+            <span className="font-heading font-bold text-xl tracking-wider">#АСТ_ШИНА</span>
           </div>
-          <div className="text-sm text-primary-foreground/60">© 2026 ШИНОЦЕНТР. Все права защищены.</div>
+          <div className="text-sm text-primary-foreground/60">© 2026 #АСТ_ШИНА, Астрахань. Все права защищены.</div>
           <div className="flex gap-3">
             {['Send', 'MessageCircle', 'Phone'].map((i) => (
               <button key={i} className="w-10 h-10 rounded border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-colors">
