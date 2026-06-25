@@ -90,7 +90,6 @@ const NAV = [
   { id: 'home', label: 'Главная' },
   { id: 'catalog', label: 'Каталог' },
   { id: 'services', label: 'Услуги' },
-  { id: 'buyout', label: 'Выкуп колёс' },
   { id: 'reviews', label: 'Отзывы' },
   { id: 'contacts', label: 'Контакты' },
 ];
@@ -147,31 +146,29 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-primary text-primary-foreground border-b-2 border-accent">
+      <header className="sticky top-0 z-50 bg-white text-foreground border-b-2 border-accent shadow-sm">
         <div className="container flex items-center justify-between h-16 md:h-20">
-          <button onClick={() => scrollTo('home')} className="flex items-center gap-2">
-            <div className="w-9 h-9 md:w-11 md:h-11 rounded-full border-4 border-accent flex items-center justify-center bg-primary">
-              <Icon name="Disc" className="text-accent" size={22} />
-            </div>
-            <div className="text-left leading-none">
-              <div className="font-heading font-bold text-lg md:text-2xl tracking-wider">#АСТ_ШИНА</div>
-              <div className="text-[10px] md:text-xs text-accent tracking-[0.2em] uppercase">Шины · Диски · Сервис</div>
-            </div>
+          <button onClick={() => scrollTo('home')} className="flex items-center">
+            <img
+              src="https://cdn.poehali.dev/projects/64097697-4d75-48c3-bd28-7c18cc4318b4/bucket/c09384b2-d004-4b4e-b93f-faf50de908fa.png"
+              alt="#АСТ_ШИНА"
+              className="h-8 md:h-10 w-auto object-contain"
+            />
           </button>
 
           <nav className="hidden lg:flex items-center gap-8">
             {NAV.map((n) => (
               <button key={n.id} onClick={() => scrollTo(n.id)}
-                className="font-heading uppercase text-sm tracking-wide hover:text-accent transition-colors">
+                className="font-heading uppercase text-sm tracking-wide text-foreground hover:text-accent transition-colors">
                 {n.label}
               </button>
             ))}
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="tel:+79276643340" className="hidden md:flex items-center gap-2 hover:text-accent transition-colors">
+            <a href="tel:+79276643340" className="hidden md:flex items-center gap-2 text-foreground hover:text-accent transition-colors">
               <Icon name="Phone" size={18} />
-              <span className="font-heading text-sm">+7 (927) 664-33-40</span>
+              <span className="font-heading text-sm font-semibold">+7 (927) 664-33-40</span>
             </a>
             <Sheet>
               <SheetTrigger asChild>
@@ -389,13 +386,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Buyout */}
-      <section id="buyout" className="py-16 md:py-24 bg-primary text-primary-foreground">
+      {/* Buyout — внутри блока услуг */}
+      <section className="py-16 md:py-24 bg-foreground text-background">
         <div className="container">
           <div className="mb-10">
             <div className="text-accent font-heading uppercase tracking-widest text-sm mb-2">Продайте нам колёса</div>
             <h2 className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-wide">Выкуп колёс</h2>
-            <p className="text-primary-foreground/70 mt-4 max-w-2xl">
+            <p className="text-background/70 mt-4 max-w-2xl">
               #АСТ_ШИНА занимается выкупом шин и колёс легковых автомобилей и мотошин. Привозите колёса сегодня — оценим и рассчитаемся сразу.
             </p>
           </div>
@@ -408,9 +405,9 @@ const Index = () => {
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {BUYOUT_REQUIREMENTS.map((req) => (
-                    <div key={req} className="flex items-start gap-3 bg-primary-foreground/5 border border-primary-foreground/10 rounded p-4">
+                    <div key={req} className="flex items-start gap-3 bg-background/5 border border-background/10 rounded p-4">
                       <Icon name="Check" className="text-accent shrink-0 mt-0.5" size={18} />
-                      <span className="text-sm text-primary-foreground/85">{req}</span>
+                      <span className="text-sm text-background/85">{req}</span>
                     </div>
                   ))}
                 </div>
@@ -422,18 +419,18 @@ const Index = () => {
                 </h3>
                 <div className="space-y-3">
                   {BUYOUT_ADVANTAGES.map((adv, i) => (
-                    <div key={i} className="flex items-start gap-4 bg-primary-foreground/5 border border-primary-foreground/10 rounded p-4">
-                      <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground font-heading font-bold flex items-center justify-center shrink-0">
+                    <div key={i} className="flex items-start gap-4 bg-background/5 border border-background/10 rounded p-4">
+                      <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground font-heading font-bold flex items-center justify-center shrink-0 text-sm">
                         {i + 1}
                       </div>
-                      <span className="text-sm text-primary-foreground/85 leading-relaxed">{adv}</span>
+                      <span className="text-sm text-background/85 leading-relaxed">{adv}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="bg-card text-card-foreground rounded-lg overflow-hidden lg:sticky lg:top-24">
+            <div className="bg-white text-foreground rounded-lg overflow-hidden lg:sticky lg:top-24 border border-white/10">
               <div className="bg-accent text-accent-foreground p-5">
                 <h3 className="font-heading font-bold text-2xl uppercase flex items-center gap-2">
                   <Icon name="BadgeRussianRuble" size={26} /> Цены на скупку
@@ -448,7 +445,7 @@ const Index = () => {
                 ))}
               </div>
               <div className="p-5">
-                <Button onClick={() => scrollTo('contacts')} className="w-full bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground font-heading uppercase tracking-wide h-12 transition-colors">
+                <Button onClick={() => scrollTo('contacts')} className="w-full bg-foreground text-background hover:bg-accent hover:text-accent-foreground font-heading uppercase tracking-wide h-12 transition-colors">
                   Сдать колёса
                 </Button>
               </div>
@@ -501,7 +498,7 @@ const Index = () => {
                   { icon: 'MapPin', label: 'Адрес', val: 'г. Астрахань, ул. Рождественского, 35' },
                   { icon: 'Phone', label: 'Телефон', val: '+7 (927) 664-33-40' },
                   { icon: 'Mail', label: 'Email', val: 'ast_shina@bk.ru' },
-                  { icon: 'Truck', label: 'Доставка', val: 'Только по городу' },
+                  { icon: 'Clock', label: 'Часы работы', val: 'Работаем без выходных' },
                 ].map((c) => (
                   <div key={c.label} className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded border-2 border-accent flex items-center justify-center shrink-0">
@@ -536,16 +533,17 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground border-t border-primary-foreground/10 py-8">
+      <footer className="bg-foreground text-background border-t-2 border-accent py-8">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Icon name="Disc" className="text-accent" size={24} />
-            <span className="font-heading font-bold text-xl tracking-wider">#АСТ_ШИНА</span>
-          </div>
-          <div className="text-sm text-primary-foreground/60">© 2026 #АСТ_ШИНА, Астрахань. Все права защищены.</div>
+          <img
+            src="https://cdn.poehali.dev/projects/64097697-4d75-48c3-bd28-7c18cc4318b4/bucket/c09384b2-d004-4b4e-b93f-faf50de908fa.png"
+            alt="#АСТ_ШИНА"
+            className="h-7 w-auto object-contain brightness-0 invert"
+          />
+          <div className="text-sm text-background/50">© 2026 #АСТ_ШИНА, Астрахань. Все права защищены.</div>
           <div className="flex gap-3">
             {['Send', 'MessageCircle', 'Phone'].map((i) => (
-              <button key={i} className="w-10 h-10 rounded border border-primary-foreground/20 flex items-center justify-center hover:border-accent hover:text-accent transition-colors">
+              <button key={i} className="w-10 h-10 border border-background/20 flex items-center justify-center hover:border-accent hover:text-accent transition-colors">
                 <Icon name={i} size={18} />
               </button>
             ))}
